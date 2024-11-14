@@ -4,84 +4,44 @@
         <title>Moon监控使用文档 Blog</title>
         <link>https://aide-family.github.io/blog</link>
         <description>Moon监控使用文档 Blog</description>
-        <lastBuildDate>Thu, 26 Aug 2021 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 14 Nov 2024 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
-        <language>en</language>
+        <language>zh-CN</language>
         <item>
-            <title><![CDATA[Welcome]]></title>
-            <link>https://aide-family.github.io/blog/welcome</link>
-            <guid>https://aide-family.github.io/blog/welcome</guid>
-            <pubDate>Thu, 26 Aug 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[Docusaurus blogging features are powered by the blog plugin.]]></description>
-            <content:encoded><![CDATA[<p><a href="https://docusaurus.io/docs/blog" target="_blank" rel="noopener noreferrer">Docusaurus blogging features</a> are powered by the <a href="https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-blog" target="_blank" rel="noopener noreferrer">blog plugin</a>.</p>
-<p>Here are a few tips you might find useful.</p>
-<p>Simply add Markdown files (or folders) to the <code>blog</code> directory.</p>
-<p>Regular blog authors can be added to <code>authors.yml</code>.</p>
-<p>The blog post date can be extracted from filenames, such as:</p>
-<ul>
-<li><code>2019-05-30-welcome.md</code></li>
-<li><code>2019-05-30-welcome/index.md</code></li>
-</ul>
-<p>A blog post folder can be convenient to co-locate blog post images:</p>
-<p><img decoding="async" loading="lazy" alt="Docusaurus Plushie" src="https://aide-family.github.io/assets/images/docusaurus-plushie-banner-a60f7593abca1e3eef26a9afa244e4fb.jpeg" width="1500" height="500" class="img_ev3q"></p>
-<p>The blog supports tags as well!</p>
-<p><strong>And if you don't want a blog</strong>: just delete this directory, and use <code>blog: false</code> in your Docusaurus config.</p>]]></content:encoded>
-            <category>Facebook</category>
-            <category>Hello</category>
-            <category>Docusaurus</category>
-        </item>
-        <item>
-            <title><![CDATA[MDX Blog Post]]></title>
-            <link>https://aide-family.github.io/blog/mdx-blog-post</link>
-            <guid>https://aide-family.github.io/blog/mdx-blog-post</guid>
-            <pubDate>Sun, 01 Aug 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[Blog posts support Docusaurus Markdown features, such as MDX.]]></description>
-            <content:encoded><![CDATA[<p>Blog posts support <a href="https://docusaurus.io/docs/markdown-features" target="_blank" rel="noopener noreferrer">Docusaurus Markdown features</a>, such as <a href="https://mdxjs.com/" target="_blank" rel="noopener noreferrer">MDX</a>.</p>
-<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</div><div class="admonitionContent_BuS1"><p>Use the power of React to create interactive blog posts.</p></div></div>
-<!-- -->
-<p>For example, use JSX to create an interactive button:</p>
-<div class="language-js codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-js codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">button onClick</span><span class="token operator" style="color:#393A34">=</span><span class="token punctuation" style="color:#393A34">{</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token arrow operator" style="color:#393A34">=&gt;</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">alert</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">'button clicked!'</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">}</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token maybe-class-name">Click</span><span class="token plain"> me</span><span class="token operator" style="color:#393A34">!</span><span class="token operator" style="color:#393A34">&lt;</span><span class="token operator" style="color:#393A34">/</span><span class="token plain">button</span><span class="token operator" style="color:#393A34">&gt;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<button>Click me!</button>]]></content:encoded>
-            <category>Docusaurus</category>
-        </item>
-        <item>
-            <title><![CDATA[Long Blog Post]]></title>
-            <link>https://aide-family.github.io/blog/long-blog-post</link>
-            <guid>https://aide-family.github.io/blog/long-blog-post</guid>
-            <pubDate>Wed, 29 May 2019 00:00:00 GMT</pubDate>
-            <description><![CDATA[This is the summary of a very long blog post,]]></description>
-            <content:encoded><![CDATA[<p>This is the summary of a very long blog post,</p>
-<p>Use a <code>&lt;!--</code> <code>truncate</code> <code>--&gt;</code> comment to limit blog post size in the list view.</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>]]></content:encoded>
-            <category>Hello</category>
-            <category>Docusaurus</category>
-        </item>
-        <item>
-            <title><![CDATA[First Blog Post]]></title>
-            <link>https://aide-family.github.io/blog/first-blog-post</link>
-            <guid>https://aide-family.github.io/blog/first-blog-post</guid>
-            <pubDate>Tue, 28 May 2019 00:00:00 GMT</pubDate>
-            <description><![CDATA[Lorem ipsum dolor sit amet...]]></description>
-            <content:encoded><![CDATA[<p>Lorem ipsum dolor sit amet...</p>
-<p>...consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet</p>]]></content:encoded>
-            <category>Hola</category>
-            <category>Docusaurus</category>
+            <title><![CDATA[Hello Moon]]></title>
+            <link>https://aide-family.github.io/blog/hello</link>
+            <guid>https://aide-family.github.io/blog/hello</guid>
+            <pubDate>Thu, 14 Nov 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[登陆页]]></description>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithStickyNavbar_LWe7" id="登陆页">登陆页<a href="https://aide-family.github.io/blog/hello#%E7%99%BB%E9%99%86%E9%A1%B5" class="hash-link" aria-label="登陆页的直接链接" title="登陆页的直接链接">​</a></h2>
+<p><img decoding="async" loading="lazy" alt="登陆页" src="https://aide-family.github.io/assets/images/login-957eebfd5034c6997192dde69f6e2078.png" width="3834" height="1860" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="实时告警">实时告警<a href="https://aide-family.github.io/blog/hello#%E5%AE%9E%E6%97%B6%E5%91%8A%E8%AD%A6" class="hash-link" aria-label="实时告警的直接链接" title="实时告警的直接链接">​</a></h2>
+<p><img decoding="async" loading="lazy" alt="实时告警" src="https://aide-family.github.io/assets/images/real-time-9cb2004aea535545f82cd569d21880f1.png" width="3832" height="1858" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="数据源">数据源<a href="https://aide-family.github.io/blog/hello#%E6%95%B0%E6%8D%AE%E6%BA%90" class="hash-link" aria-label="数据源的直接链接" title="数据源的直接链接">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="数据源列表">数据源列表<a href="https://aide-family.github.io/blog/hello#%E6%95%B0%E6%8D%AE%E6%BA%90%E5%88%97%E8%A1%A8" class="hash-link" aria-label="数据源列表的直接链接" title="数据源列表的直接链接">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="数据源" src="https://aide-family.github.io/assets/images/datasource-9cf56e244e5469a1fff274df57351154.png" width="3832" height="1860" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="元数据">元数据<a href="https://aide-family.github.io/blog/hello#%E5%85%83%E6%95%B0%E6%8D%AE" class="hash-link" aria-label="元数据的直接链接" title="元数据的直接链接">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="元数据" src="https://aide-family.github.io/assets/images/metadata-cc86b2133ea63b1e4c80c85a814bd753.png" width="3832" height="1860" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="查询器">查询器<a href="https://aide-family.github.io/blog/hello#%E6%9F%A5%E8%AF%A2%E5%99%A8" class="hash-link" aria-label="查询器的直接链接" title="查询器的直接链接">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="查询编辑器" src="https://aide-family.github.io/assets/images/query-edit-fd2b2404c5c0e0db927aa9d5f8f7786b.png" width="3830" height="1856" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="策略管理">策略管理<a href="https://aide-family.github.io/blog/hello#%E7%AD%96%E7%95%A5%E7%AE%A1%E7%90%86" class="hash-link" aria-label="策略管理的直接链接" title="策略管理的直接链接">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="策略列表">策略列表<a href="https://aide-family.github.io/blog/hello#%E7%AD%96%E7%95%A5%E5%88%97%E8%A1%A8" class="hash-link" aria-label="策略列表的直接链接" title="策略列表的直接链接">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="策略管理" src="https://aide-family.github.io/assets/images/strategy-ab475bfce33f54aadcfbd1feec2de712.png" width="3834" height="1864" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="策略编辑器">策略编辑器<a href="https://aide-family.github.io/blog/hello#%E7%AD%96%E7%95%A5%E7%BC%96%E8%BE%91%E5%99%A8" class="hash-link" aria-label="策略编辑器的直接链接" title="策略编辑器的直接链接">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="策略编辑器" src="https://aide-family.github.io/assets/images/strategy-edit-1-86ee1f7dc0bbd2368fa7033621c22abf.png" width="3822" height="1856" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="策略编辑器" src="https://aide-family.github.io/assets/images/strategy-edit-2-682bf0c49bcfeb9e3d0e8dcd1a88b262.png" width="3824" height="1864" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="策略详情">策略详情<a href="https://aide-family.github.io/blog/hello#%E7%AD%96%E7%95%A5%E8%AF%A6%E6%83%85" class="hash-link" aria-label="策略详情的直接链接" title="策略详情的直接链接">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="策略详情" src="https://aide-family.github.io/assets/images/strategy-detail-01cadf7b8591c025168460476c42a3f0.png" width="3836" height="1862" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="告警组">告警组<a href="https://aide-family.github.io/blog/hello#%E5%91%8A%E8%AD%A6%E7%BB%84" class="hash-link" aria-label="告警组的直接链接" title="告警组的直接链接">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="告警组列表">告警组列表<a href="https://aide-family.github.io/blog/hello#%E5%91%8A%E8%AD%A6%E7%BB%84%E5%88%97%E8%A1%A8" class="hash-link" aria-label="告警组列表的直接链接" title="告警组列表的直接链接">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="告警组" src="https://aide-family.github.io/assets/images/alert-group-428b7d4f6be03be2adfb2bef7e89b2ee.png" width="3830" height="1856" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="告警hook对象">告警Hook对象<a href="https://aide-family.github.io/blog/hello#%E5%91%8A%E8%AD%A6hook%E5%AF%B9%E8%B1%A1" class="hash-link" aria-label="告警Hook对象的直接链接" title="告警Hook对象的直接链接">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="告警Hook对象" src="https://aide-family.github.io/assets/images/alert-hook-84b9f0b131f6d9cf91d888f8e9a76832.png" width="3834" height="1862" class="img_ev3q"></p>]]></content:encoded>
+            <category>Moon</category>
+            <category>Metric</category>
+            <category>Prometheus</category>
+            <category>VictoriaMetrics</category>
         </item>
     </channel>
 </rss>
