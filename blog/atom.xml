@@ -2,11 +2,89 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://aide-family.github.io/blog</id>
     <title>Moon监控使用文档 Blog</title>
-    <updated>2024-11-14T00:00:00.000Z</updated>
+    <updated>2024-11-15T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://aide-family.github.io/blog"/>
     <subtitle>Moon监控使用文档 Blog</subtitle>
     <icon>https://aide-family.github.io/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[创建一个报警策略]]></title>
+        <id>https://aide-family.github.io/blog/new-strategy</id>
+        <link href="https://aide-family.github.io/blog/new-strategy"/>
+        <updated>2024-11-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[在开始之前，我们需要了解策略的基本概念。]]></summary>
+        <content type="html"><![CDATA[<p>在开始之前，我们需要了解策略的基本概念。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="什么是策略">什么是策略？<a href="https://aide-family.github.io/blog/new-strategy#%E4%BB%80%E4%B9%88%E6%98%AF%E7%AD%96%E7%95%A5" class="hash-link" aria-label="什么是策略？的直接链接" title="什么是策略？的直接链接">​</a></h2>
+<p>策略是一组规则的集合，用于去检测和报警系统中的指标。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="需要哪些东西">需要哪些东西？<a href="https://aide-family.github.io/blog/new-strategy#%E9%9C%80%E8%A6%81%E5%93%AA%E4%BA%9B%E4%B8%9C%E8%A5%BF" class="hash-link" aria-label="需要哪些东西？的直接链接" title="需要哪些东西？的直接链接">​</a></h2>
+<ol>
+<li>什么场景的告警策略？</li>
+<li>告警给谁？</li>
+<li>怎么展示？</li>
+</ol>
+<p>针对上述问题，我们可以设计以下策略：</p>
+<ol>
+<li>系统 CPU 使用率过高：当系统 CPU 使用率超过 80% 时，发送邮件给管理员。</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="创建hook">创建Hook<a href="https://aide-family.github.io/blog/new-strategy#%E5%88%9B%E5%BB%BAhook" class="hash-link" aria-label="创建Hook的直接链接" title="创建Hook的直接链接">​</a></h2>
+<blockquote>
+<p>Hook 是 Moon 用来与外部系统集成的一种方式。Moon 支持多种类型的 Hook，包括邮件、短信、电话、企业微信、飞书等。</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="Hook" src="https://aide-family.github.io/assets/images/hook-add-62de4139f3b5e19bc0e8ad9d4cb0c364.png" width="3830" height="1858" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="创建告警通知组">创建告警通知组<a href="https://aide-family.github.io/blog/new-strategy#%E5%88%9B%E5%BB%BA%E5%91%8A%E8%AD%A6%E9%80%9A%E7%9F%A5%E7%BB%84" class="hash-link" aria-label="创建告警通知组的直接链接" title="创建告警通知组的直接链接">​</a></h2>
+<blockquote>
+<p>告警组是用于管理通知渠道的集合。里面包含人员（邮件、短信、电话）， Hook(Webhook、 DingTalk、企业微信、飞书等)</p>
+</blockquote>
+<ul>
+<li>登录到 Moon 控制台，点击左侧导航栏的“告警通知-&gt;告警组”，点击“添加”按钮。</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="告警通知组" src="https://aide-family.github.io/assets/images/notify-group-94481ebc6a1e73eb34b5b74edb414f91.png" width="3838" height="1864" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="创建数据源">创建数据源<a href="https://aide-family.github.io/blog/new-strategy#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E6%BA%90" class="hash-link" aria-label="创建数据源的直接链接" title="创建数据源的直接链接">​</a></h2>
+<ul>
+<li>登录到 Moon 控制台，点击左侧导航栏的“数据源-&gt;Metric”，点击“新建数据源”按钮。</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="Metric数据源" src="https://aide-family.github.io/assets/images/datasource-4cf769aea0db577893c61bb816e2924c.png" width="3824" height="1860" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="CPU 使用率查询" src="https://aide-family.github.io/assets/images/datasource-query-cpu-use-80-1907a18e83de8440c88a56f24402bf4c.png" width="3832" height="1864" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="创建策略组">创建策略组<a href="https://aide-family.github.io/blog/new-strategy#%E5%88%9B%E5%BB%BA%E7%AD%96%E7%95%A5%E7%BB%84" class="hash-link" aria-label="创建策略组的直接链接" title="创建策略组的直接链接">​</a></h2>
+<blockquote>
+<p>策略组是策略的集合，可以定义多个策略，每个策略可以关联多个数据源。</p>
+</blockquote>
+<ul>
+<li>登录到 Moon 控制台，点击左侧导航栏的“策略管理-&gt;策略组”，点击“添加”按钮。</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="策略组" src="https://aide-family.github.io/assets/images/strategy-group-add-18df32f0253556d757172145cd62f5eb.png" width="3828" height="1864" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="创建策略">创建策略<a href="https://aide-family.github.io/blog/new-strategy#%E5%88%9B%E5%BB%BA%E7%AD%96%E7%95%A5" class="hash-link" aria-label="创建策略的直接链接" title="创建策略的直接链接">​</a></h2>
+<blockquote>
+<p>策略是一组规则的集合，用于去检测和报警系统中的指标。</p>
+</blockquote>
+<ul>
+<li>登录到 Moon 控制台，点击左侧导航栏的“策略管理-&gt;策略列表”，点击“添加”按钮。</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="策略添加" src="https://aide-family.github.io/assets/images/strategy-add-1-9b36f99208b760cb778ed0ba8cfa46c9.png" width="3834" height="1090" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="策略添加" src="https://aide-family.github.io/assets/images/strategy-add-2-2b55f684a7ead07eae7a002f09413535.png" width="3818" height="1816" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="策略添加" src="https://aide-family.github.io/assets/images/strategy-add-3-791731c6ee441f01e8b1e57701ea3cc4.png" width="3834" height="1862" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="策略详情" src="https://aide-family.github.io/assets/images/strategy-detail-4c94bf1ceab13a8f32cb4363900bf7c7.png" width="3828" height="1858" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="查看告警">查看告警<a href="https://aide-family.github.io/blog/new-strategy#%E6%9F%A5%E7%9C%8B%E5%91%8A%E8%AD%A6" class="hash-link" aria-label="查看告警的直接链接" title="查看告警的直接链接">​</a></h2>
+<p><img decoding="async" loading="lazy" alt="告警列表" src="https://aide-family.github.io/assets/images/realtime-alarm-5db67279b149b73fa87ca748c172b941.png" width="3832" height="1862" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="feishu通知" src="https://aide-family.github.io/assets/images/feishu-notify-bd5541890151b34d48b2d46151974366.png" width="1490" height="1418" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="email通知" src="https://aide-family.github.io/assets/images/email-notify-ea48dc5eeab34e0e76d0c96dcaa246ba.png" width="1154" height="546" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="告警恢复">告警恢复<a href="https://aide-family.github.io/blog/new-strategy#%E5%91%8A%E8%AD%A6%E6%81%A2%E5%A4%8D" class="hash-link" aria-label="告警恢复的直接链接" title="告警恢复的直接链接">​</a></h2>
+<blockquote>
+<p>这里是修改策略的阈值为100%，告警恢复。也可以直接关闭策略来产生告警恢复事件</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="告警恢复" src="https://aide-family.github.io/assets/images/alert-recover-5587bdebafccb45c7190d11be341ed44.png" width="1106" height="614" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="告警恢复feishu" src="https://aide-family.github.io/assets/images/alert-recover-feishu-cbaf50dd3ad7c631ab13f1deaccd44e3.png" width="1540" height="1480" class="img_ev3q"></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="查看告警历史">查看告警历史<a href="https://aide-family.github.io/blog/new-strategy#%E6%9F%A5%E7%9C%8B%E5%91%8A%E8%AD%A6%E5%8E%86%E5%8F%B2" class="hash-link" aria-label="查看告警历史的直接链接" title="查看告警历史的直接链接">​</a></h2>
+<p><img decoding="async" loading="lazy" alt="告警历史" src="https://aide-family.github.io/assets/images/alarm-history-fed450cf21427bed10fad821be84596d.png" width="3800" height="1862" class="img_ev3q"></p>]]></content>
+        <author>
+            <name>梧桐</name>
+            <uri>https://github.com/aide-cloud</uri>
+        </author>
+        <category label="Moon" term="Moon"/>
+        <category label="Metric" term="Metric"/>
+        <category label="Prometheus" term="Prometheus"/>
+        <category label="VictoriaMetrics" term="VictoriaMetrics"/>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello Moon]]></title>
         <id>https://aide-family.github.io/blog/hello</id>
