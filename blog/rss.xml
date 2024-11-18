@@ -9,6 +9,129 @@
         <generator>https://github.com/jpmonette/feed</generator>
         <language>zh-CN</language>
         <item>
+            <title><![CDATA[Prometheus 指标类型详解]]></title>
+            <link>https://aide-family.github.io/blog/2024/11/18/prometheus-metrics</link>
+            <guid>https://aide-family.github.io/blog/2024/11/18/prometheus-metrics</guid>
+            <pubDate>Mon, 18 Nov 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[深入理解 Prometheus 的四种核心指标类型及其使用场景]]></description>
+            <content:encoded><![CDATA[<p>在 Prometheus 生态系统中，指标（Metrics）是最基础的数据类型。理解不同类型的指标及其适用场景，对于构建有效的监控系统至关重要。本文将详细介绍 Prometheus 的四种核心指标类型。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="counter计数器">Counter（计数器）<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#counter%E8%AE%A1%E6%95%B0%E5%99%A8" class="hash-link" aria-label="Counter（计数器）的直接链接" title="Counter（计数器）的直接链接">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="定义">定义<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#%E5%AE%9A%E4%B9%89" class="hash-link" aria-label="定义的直接链接" title="定义的直接链接">​</a></h3>
+<p>Counter 是一个只增不减的累计指标。它的值只能增加或在重启时重置为零。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="特点">特点<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#%E7%89%B9%E7%82%B9" class="hash-link" aria-label="特点的直接链接" title="特点的直接链接">​</a></h3>
+<ul>
+<li>单调递增</li>
+<li>只能增加或重置为零</li>
+<li>常用于计数场景</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="使用场景">使用场景<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF" class="hash-link" aria-label="使用场景的直接链接" title="使用场景的直接链接">​</a></h3>
+<div class="language-promql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-promql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain"># 常见的 Counter 指标</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">http_requests_total         # HTTP 请求总数</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">node_network_receive_bytes  # 网络接收字节数</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">errors_total               # 错误总数</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="最佳实践">最佳实践<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5" class="hash-link" aria-label="最佳实践的直接链接" title="最佳实践的直接链接">​</a></h3>
+<div class="language-promql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-promql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain"># 计算速率（每秒请求数）</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">rate(http_requests_total[5m])</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># 计算一段时间内的增量</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">increase(http_requests_total[1h])</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="gauge仪表盘">Gauge（仪表盘）<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#gauge%E4%BB%AA%E8%A1%A8%E7%9B%98" class="hash-link" aria-label="Gauge（仪表盘）的直接链接" title="Gauge（仪表盘）的直接链接">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="定义-1">定义<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#%E5%AE%9A%E4%B9%89-1" class="hash-link" aria-label="定义的直接链接" title="定义的直接链接">​</a></h3>
+<p>Gauge 是可以任意上下波动的指标，可增可减。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="特点-1">特点<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#%E7%89%B9%E7%82%B9-1" class="hash-link" aria-label="特点的直接链接" title="特点的直接链接">​</a></h3>
+<ul>
+<li>可增可减</li>
+<li>反映瞬时状态</li>
+<li>适合记录当前状态</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="使用场景-1">使用场景<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF-1" class="hash-link" aria-label="使用场景的直接链接" title="使用场景的直接链接">​</a></h3>
+<div class="language-promql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-promql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain"># 常见的 Gauge 指标</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">node_memory_MemAvailable_bytes  # 可用内存</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">node_cpu_usage_percent         # CPU 使用率</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">temperature_celsius            # 温度</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="最佳实践-1">最佳实践<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-1" class="hash-link" aria-label="最佳实践的直接链接" title="最佳实践的直接链接">​</a></h3>
+<div class="language-promql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-promql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain"># 直接使用当前值</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">node_memory_MemAvailable_bytes</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># 计算变化率</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">delta(temperature_celsius[1h])</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="histogram直方图">Histogram（直方图）<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#histogram%E7%9B%B4%E6%96%B9%E5%9B%BE" class="hash-link" aria-label="Histogram（直方图）的直接链接" title="Histogram（直方图）的直接链接">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="定义-2">定义<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#%E5%AE%9A%E4%B9%89-2" class="hash-link" aria-label="定义的直接链接" title="定义的直接链接">​</a></h3>
+<p>Histogram 对观察值进行采样，并将其计入可配置的桶（bucket）中，同时提供所有观察值的总和。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="特点-2">特点<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#%E7%89%B9%E7%82%B9-2" class="hash-link" aria-label="特点的直接链接" title="特点的直接链接">​</a></h3>
+<ul>
+<li>包含多个桶计数</li>
+<li>自动计算总和和样本数</li>
+<li>支持分位数计算</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="组成部分">组成部分<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86" class="hash-link" aria-label="组成部分的直接链接" title="组成部分的直接链接">​</a></h3>
+<div class="language-promql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-promql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain"># 一个 Histogram 指标会自动生成以下数据：</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">&lt;basename&gt;_bucket{le="&lt;upper inclusive bound&gt;"}  # 桶计数</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">&lt;basename&gt;_sum                                   # 所有观察值的总和</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">&lt;basename&gt;_count                                 # 观察值的总数</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="使用场景-2">使用场景<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF-2" class="hash-link" aria-label="使用场景的直接链接" title="使用场景的直接链接">​</a></h3>
+<div class="language-promql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-promql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain"># HTTP 请求延迟分布</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">http_request_duration_seconds_bucket{le="0.1"}  # 100ms 内的请求数</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">http_request_duration_seconds_sum               # 总延迟时间</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">http_request_duration_seconds_count             # 总请求数</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># 计算 P90 延迟</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">histogram_quantile(0.9, </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  rate(http_request_duration_seconds_bucket[5m])</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="summary摘要">Summary（摘要）<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#summary%E6%91%98%E8%A6%81" class="hash-link" aria-label="Summary（摘要）的直接链接" title="Summary（摘要）的直接链接">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="定义-3">定义<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#%E5%AE%9A%E4%B9%89-3" class="hash-link" aria-label="定义的直接链接" title="定义的直接链接">​</a></h3>
+<p>Summary 类似于 Histogram，但它直接在客户端计算分位数。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="特点-3">特点<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#%E7%89%B9%E7%82%B9-3" class="hash-link" aria-label="特点的直接链接" title="特点的直接链接">​</a></h3>
+<ul>
+<li>客户端计算分位数</li>
+<li>提供总和和计数</li>
+<li>配置固定的分位数</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="组成部分-1">组成部分<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86-1" class="hash-link" aria-label="组成部分的直接链接" title="组成部分的直接链接">​</a></h3>
+<div class="language-promql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-promql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain"># 一个 Summary 指标会自动生成：</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">&lt;basename&gt;{quantile="&lt;φ&gt;"}  # φ-分位数值</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">&lt;basename&gt;_sum              # 所有观察值的总和</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">&lt;basename&gt;_count            # 观察值的总数</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="使用场景-3">使用场景<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF-3" class="hash-link" aria-label="使用场景的直接链接" title="使用场景的直接链接">​</a></h3>
+<div class="language-promql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-promql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain"># 应用响应时间</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">http_request_duration_seconds{quantile="0.95"}  # P95 延迟</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">http_request_duration_seconds_sum               # 总延迟</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">http_request_duration_seconds_count             # 总请求数</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="指标类型选择建议">指标类型选择建议<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#%E6%8C%87%E6%A0%87%E7%B1%BB%E5%9E%8B%E9%80%89%E6%8B%A9%E5%BB%BA%E8%AE%AE" class="hash-link" aria-label="指标类型选择建议的直接链接" title="指标类型选择建议的直接链接">​</a></h2>
+<ol>
+<li>
+<p><strong>Counter 适用于</strong>：</p>
+<ul>
+<li>请求计数</li>
+<li>错误计数</li>
+<li>任务完成数</li>
+</ul>
+</li>
+<li>
+<p><strong>Gauge 适用于</strong>：</p>
+<ul>
+<li>内存使用量</li>
+<li>温度</li>
+<li>当前并发连接数</li>
+</ul>
+</li>
+<li>
+<p><strong>Histogram 适用于</strong>：</p>
+<ul>
+<li>请求延迟</li>
+<li>响应大小</li>
+<li>需要计算分位数的场景</li>
+</ul>
+</li>
+<li>
+<p><strong>Summary 适用于</strong>：</p>
+<ul>
+<li>需要精确分位数的场景</li>
+<li>客户端计算分位数的场景</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="最佳实践-2">最佳实践<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5-2" class="hash-link" aria-label="最佳实践的直接链接" title="最佳实践的直接链接">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="1-命名规范">1. 命名规范<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#1-%E5%91%BD%E5%90%8D%E8%A7%84%E8%8C%83" class="hash-link" aria-label="1. 命名规范的直接链接" title="1. 命名规范的直接链接">​</a></h3>
+<div class="language-promql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-promql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain"># 好的命名示例</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">http_requests_total</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">http_request_duration_seconds</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">node_memory_usage_bytes</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="2-标签使用">2. 标签使用<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#2-%E6%A0%87%E7%AD%BE%E4%BD%BF%E7%94%A8" class="hash-link" aria-label="2. 标签使用的直接链接" title="2. 标签使用的直接链接">​</a></h3>
+<div class="language-promql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-promql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain"># 合理使用标签</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">http_requests_total{method="GET", status="200", path="/api/v1/users"}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="3-单位规范">3. 单位规范<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#3-%E5%8D%95%E4%BD%8D%E8%A7%84%E8%8C%83" class="hash-link" aria-label="3. 单位规范的直接链接" title="3. 单位规范的直接链接">​</a></h3>
+<ul>
+<li>使用基本单位（秒、字节等）</li>
+<li>在指标名称中包含单位信息</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="总结">总结<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#%E6%80%BB%E7%BB%93" class="hash-link" aria-label="总结的直接链接" title="总结的直接链接">​</a></h2>
+<p>选择合适的指标类型对于构建有效的监控系统至关重要：</p>
+<ul>
+<li>Counter 适合累计型数据</li>
+<li>Gauge 适合状态型数据</li>
+<li>Histogram 适合需要分析分布的数据</li>
+<li>Summary 适合需要客户端计算分位数的场景</li>
+</ul>
+<p>理解这些指标类型的特点和使用场景，可以帮助我们更好地设计监控系统。</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="参考资料">参考资料<a href="https://aide-family.github.io/blog/2024/11/18/prometheus-metrics#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99" class="hash-link" aria-label="参考资料的直接链接" title="参考资料的直接链接">​</a></h2>
+<ul>
+<li><a href="https://prometheus.io/docs/concepts/metric_types/" target="_blank" rel="noopener noreferrer">Prometheus 指标类型文档</a></li>
+<li><a href="https://prometheus.io/docs/practices/naming/" target="_blank" rel="noopener noreferrer">Prometheus 最佳实践</a></li>
+<li><a href="https://prometheus.io/docs/practices/histograms/" target="_blank" rel="noopener noreferrer">Histogram vs Summary</a></li>
+</ul>]]></content:encoded>
+            <category>Prometheus</category>
+            <category>Metrics</category>
+            <category>监控</category>
+            <category>可观测性</category>
+        </item>
+        <item>
             <title><![CDATA[PromQL 实用指南]]></title>
             <link>https://aide-family.github.io/blog/2024/11/18/promql</link>
             <guid>https://aide-family.github.io/blog/2024/11/18/promql</guid>
