@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="rss.xsl"?>
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
-        <title>Moon监控使用文档 Blog</title>
+        <title>Moon使用文档 Blog</title>
         <link>https://aide-family.github.io/blog</link>
-        <description>Moon监控使用文档 Blog</description>
+        <description>Moon使用文档 Blog</description>
         <lastBuildDate>Mon, 18 Nov 2024 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
