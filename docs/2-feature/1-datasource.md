@@ -106,11 +106,33 @@ type IMQ interface {
 ### 主题
 
 ![数据源主题](./img/datasource-event-topic.png)
-## 日志（Log）开发中
+## 日志（Log）
 
 实现统一的日志查询接口，以支持多种日志存储器。 在平台配置统一的日志策略完成日志类型数据的查询、分析、告警、可视化等。
 
-[Elasticsearch](https://www.elastic.co/cn/products/elasticsearch)、[Loki](https://grafana.com/oss/loki/)
+```go
+	// LogDatasource is the interface of log datasource.
+	LogDatasource interface {
+		// QueryLogs queries logs from datasource.
+		QueryLogs(ctx context.Context, expr string, start, end int64) (*LogResponse, error)
+		// Check checks
+		Check(ctx context.Context) error
+	}
+```
+
+- [Elasticsearch](https://www.elastic.co/cn/products/elasticsearch)：完整支持 ELK 技术栈，兼容 Kibana 可视化
+- [Loki](https://grafana.com/oss/loki/)：优化日志索引存储，显著降低运维成本
+- [aliyunSLS](https://www.aliyun.com/product/sls)：深度集成阿里云生态，支持一键接入云上服务
+三大主流日志存储方案，满足企业级用户在不同场景下的日志管理需求。
+### 创建
+
+![数据源创建](./img/logs/datasource-logs-create.png)
+![创建数据源-日志-选择存储器](./img/logs/datasource-logs-es.png)
+### 基本信息
+![数据源基本信息](./img/logs/datasource-logs-basic.png)
+
+
+
 
 ## 链路（Trace）开发中
 
