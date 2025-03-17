@@ -228,7 +228,9 @@ MetricDatasource interface {
 }
 ```
 
-### 使用场景
+### 创建
+
+![数据源创建](./img/datasource-metric-create.png)
 
 1. **系统监控**
    - 主机资源监控
@@ -247,98 +249,43 @@ MetricDatasource interface {
    - 业务流程监控
    - 关键指标追踪
    - SLA 监控
+![数据源基本信息](./img/datasource-metric-basic.png)
 
-### 最佳实践
+### 元数据
 
-1. **数据采集**
-   - 合理设置采集间隔
-   - 优化标签设计
-   - 控制指标基数
-   - 规范命名规则
+![数据源元数据](./img/datasource-metric-metadata.png)
 
-2. **查询优化**
-   - 使用高效的查询语句
-   - 避免过度聚合
-   - 合理使用函数
-   - 控制查询时间范围
+### 查询
 
-3. **存储优化**
-   - 合理设置数据保留时间
-   - 配置数据下采样
-   - 启用数据压缩
-   - 规划存储容量
+:::tip
 
-### 查询示例
+查询结果支持图表、表格、JSON三种形式。 PromQL 语法参考 [Prometheus](https://prometheus.io/docs/prometheus/latest/querying/basics/)。
 
-1. **基础查询**
-```promql
-# CPU 使用率
-rate(node_cpu_seconds_total{mode="user"}[5m])
+输入框支持表达式、函数、变量、常量等语法提示，能帮助用户快速构建查询语句。
 
-# 内存使用量
-node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes
+:::
 
-# HTTP请求量
-rate(http_requests_total{status=~"2xx"}[1m])
-```
+* 图表
 
-2. **聚合查询**
-```promql
-# 按实例统计CPU使用率TOP5
-topk(5, avg by(instance) (rate(node_cpu_seconds_total{mode!="idle"}[5m])))
+![数据源查询](./img/datasource-metric-real-query.png)
 
-# 计算服务可用性
-sum(rate(http_requests_total{code=~"2xx|3xx"}[5m])) / sum(rate(http_requests_total[5m]))
-```
+> 查询条件说明, 可以选择时间范围、数据稀疏程度， 图表样式
+
+![查询条件说明](./img/datasource-metric-real-query-params.png)
+
+* 表格
+
+![数据源查询](./img/datasource-metric-real-table.png)
+
+* JSON
+
+![数据源查询](./img/datasource-metric-real-json.png)
 
 ## 事件（Event）
 
-事件数据源提供统一的消息队列接入和处理接口，支持主流的消息中间件，实现事件数据的实时采集、处理和分析。
+实现统一的事件查询接口，以支持多种事件存储器。 在平台配置统一的事件策略完成事件类型数据的查询、分析、告警、可视化等。
 
-### 支持的消息中间件
-
-1. **Kafka**
-   - 高吞吐量分布式消息系统
-   - 持久化的消息存储
-   - 高可用的集群架构
-   - 丰富的生态系统集成
-   - 适用于大规模实时数据处理
-
-2. **RocketMQ**
-   - 低延迟的消息投递
-   - 金融级的可靠性保证
-   - 灵活的消息模型
-   - 丰富的消息类型
-   - 适用于业务关键场景
-
-3. **MQTT**
-   - 轻量级的发布/订阅协议
-   - 适用于物联网场景
-   - 支持多种QoS级别
-   - 低带宽占用
-   - 适用于边缘设备通信
-
-### 核心功能
-
-1. **消息接入**
-   - 多协议支持
-   - 实时消息订阅
-   - 消息过滤
-   - 消息路由
-
-2. **事件处理**
-   - 实时事件分析
-   - 事件聚合统计
-   - 事件关联分析
-   - 事件持久化
-
-3. **告警集成**
-   - 事件触发告警
-   - 告警规则配置
-   - 告警级别定义
-   - 告警通知集成
-
-### 接口定义
+[Kafka](https://kafka.apache.org/)、[RocketMQ](https://rocketmq.apache.org/)、[MQTT](https://mqtt.org/)
 
 ```go
 // IMQ mq接口
@@ -357,159 +304,45 @@ type IMQ interface {
 }
 ```
 
-### 使用场景
+### 创建
 
-1. **系统事件监控**
-   - 系统状态变更
-   - 资源告警事件
-   - 安全事件通知
-   - 运维操作审计
+![数据源创建](./img/datasource-event-create.png)
 
-2. **业务事件处理**
-   - 订单状态追踪
-   - 用户行为分析
-   - 业务异常检测
-   - 实时数据同步
+![数据源创建](./img/datasource-event-create-1.png)
 
-3. **IoT设备监控**
-   - 设备状态监控
-   - 传感器数据采集
-   - 设备告警通知
-   - 远程控制指令
+![数据源创建](./img/datasource-event-create-2.png)
 
-### 最佳实践
+### 基本信息
 
-1. **消息设计**
-   - 合理设计Topic
-   - 规范消息格式
-   - 控制消息大小
-   - 设置消息过期时间
+![数据源基本信息](./img/datasource-event-basic.png)
 
-2. **性能优化**
-   - 合理设置分区数
-   - 优化消费者组
-   - 配置适当的批处理
-   - 监控消息积压
+### 主题
 
-3. **可靠性保证**
-   - 配置消息持久化
-   - 设置副本因子
-   - 实现消息重试
-   - 处理消息幂等
-
-### 配置示例
-
-1. **Kafka配置**
-```yaml
-type: event
-provider: kafka
-config:
-  brokers: 
-    - "kafka-1:9092"
-    - "kafka-2:9092"
-  topics:
-    - "alert.events"
-    - "system.metrics"
-  consumer_group: "monitor-group"
-  security:
-    sasl_enabled: true
-    mechanism: "PLAIN"
-```
-
-2. **RocketMQ配置**
-```yaml
-type: event
-provider: rocketmq
-config:
-  name_server: "rocketmq-server:9876"
-  group: "monitor-group"
-  topics:
-    - "alert.events"
-  retry_times: 3
-```
-
-3. **MQTT配置**
-```yaml
-type: event
-provider: mqtt
-config:
-  broker: "tcp://mqtt-broker:1883"
-  client_id: "monitor-client"
-  topics:
-    - "device/+/status"
-    - "sensor/+/data"
-  qos: 1
-```
-
+![数据源主题](./img/datasource-event-topic.png)
 ## 日志（Log）
 
-日志数据源提供统一的日志查询和分析接口，支持多种主流日志存储系统，实现日志数据的集中管理、实时检索和告警分析。
-
-### 核心功能
-
-1. **日志采集与存储**
-   - 多源日志接入
-   - 结构化解析
-   - 实时数据处理
-   - 高效压缩存储
-
-2. **查询与分析**
-   - 全文检索
-   - SQL分析能力
-   - 可视化图表
-   - 多维度统计
-
-3. **告警管理**
-   - 实时告警触发
-   - 复合告警条件
-   - 告警降噪
-   - 告警通知集成
-
-### 接口定义
+实现统一的日志查询接口，以支持多种日志存储器。 在平台配置统一的日志策略完成日志类型数据的查询、分析、告警、可视化等。
 
 ```go
-// LogDatasource is the interface of log datasource.
-LogDatasource interface {
-    // QueryLogs queries logs from datasource.
-    QueryLogs(ctx context.Context, expr string, start, end int64) (*LogResponse, error)
-    // Check checks connection status
-    Check(ctx context.Context) error
-}
+	// LogDatasource is the interface of log datasource.
+	LogDatasource interface {
+		// QueryLogs queries logs from datasource.
+		QueryLogs(ctx context.Context, expr string, start, end int64) (*LogResponse, error)
+		// Check checks
+		Check(ctx context.Context) error
+	}
 ```
 
-### 使用场景
+- [Elasticsearch](https://www.elastic.co/cn/products/elasticsearch)：完整支持 ELK 技术栈，兼容 Kibana 可视化
+- [Loki](https://grafana.com/oss/loki/)：优化日志索引存储，显著降低运维成本
+- [aliyunSLS](https://www.aliyun.com/product/sls)：深度集成阿里云生态，支持一键接入云上服务
+  三大主流日志存储方案，满足企业级用户在不同场景下的日志管理需求。
+### 创建
 
-1. **应用日志监控**
-   - 错误日志实时告警
-   - 性能问题诊断
-   - 用户行为分析
-
-2. **安全日志分析**
-   - 异常访问检测
-   - 安全事件追踪
-   - 合规审计日志
-
-3. **运维日志管理**
-   - 系统日志集中化
-   - 运维操作审计
-   - 故障快速定位
-
-### 最佳实践
-
-1. **日志接入规范**
-   - 统一日志格式
-   - 规范日志级别
-   - 合理的日志轮转策略
-
-2. **查询优化建议**
-   - 使用精确的时间范围
-   - 合理设置查询条件
-   - 避免全文模糊匹配
-
-3. **成本优化**
-   - 设置合理的保留期限
-   - 启用日志压缩
-   - 使用索引优化查询
+![数据源创建](./img/logs/datasource-logs-create.png)
+![创建数据源-日志-选择存储器](./img/logs/datasource-logs-es.png)
+### 基本信息
+![数据源基本信息](./img/logs/datasource-logs-basic.png)
 
 ## 链路（Trace）- 开发中
 
@@ -573,26 +406,6 @@ type TraceDatasource interface {
 }
 ```
 
-### 应用场景
-
-1. **微服务监控**
-   - 服务调用链路追踪
-   - 接口性能分析
-   - 服务依赖梳理
-   - 故障快速定位
-
-2. **性能优化**
-   - 调用链路优化
-   - 性能瓶颈识别
-   - 资源使用分析
-   - 慢调用诊断
-
-3. **问题诊断**
-   - 异常链路回溯
-   - 错误传播分析
-   - 系统瓶颈定位
-   - 级联故障分析
-
 ### 开发计划
 
 1. **第一阶段**
@@ -612,23 +425,3 @@ type TraceDatasource interface {
    - AI智能分析
    - 链路基线管理
    - 全链路监控大盘
-
-### 技术特性
-
-1. **数据模型**
-   - 分布式追踪模型
-   - Span数据结构
-   - 上下文关联
-   - 标签化属性
-
-2. **采样策略**
-   - 头部采样
-   - 尾部采样
-   - 自适应采样
-   - 优先级采样
-
-3. **存储设计**
-   - 高性能存储
-   - 分布式架构
-   - 数据压缩
-   - 快速检索
