@@ -5,7 +5,7 @@
 <meta name="generator" content="Docusaurus v3.6.1">
 <title data-rh="true">数据源管理 | Moon使用文档</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://aide-family.github.io/docs/feature/datasource"><meta data-rh="true" property="og:locale" content="zh_CN"><meta data-rh="true" name="docusaurus_locale" content="zh-CN"><meta data-rh="true" name="docsearch:language" content="zh-CN"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="数据源管理 | Moon使用文档"><meta data-rh="true" name="description" content="功能描述"><meta data-rh="true" property="og:description" content="功能描述"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://aide-family.github.io/docs/feature/datasource"><link data-rh="true" rel="alternate" href="https://aide-family.github.io/docs/feature/datasource" hreflang="zh-CN"><link data-rh="true" rel="alternate" href="https://aide-family.github.io/docs/feature/datasource" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Moon使用文档 RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Moon使用文档 Atom Feed"><link rel="stylesheet" href="/assets/css/styles.8c934472.css">
-<script src="/assets/js/runtime~main.5081a671.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.ab42153d.js" defer="defer"></script>
 <script src="/assets/js/main.bbe6bb68.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -293,7 +293,8 @@
 </ol>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="接口定义-1">接口定义<a href="#接口定义-1" class="hash-link" aria-label="接口定义的直接链接" title="接口定义的直接链接">​</a></h3>
 <div class="language-go codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-go codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic">// MetricDatasource 数据源完整接口定义</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">MetricDatasource </span><span class="token keyword" style="color:#00009f">interface</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">Step</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token builtin">uint32</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// Query 查询数据</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">Query</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ctx context</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">Context</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> expr </span><span class="token builtin">string</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> duration </span><span class="token builtin">int64</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">[</span><span class="token punctuation" style="color:#393A34">]</span><span class="token operator" style="color:#393A34">*</span><span class="token plain">QueryResponse</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token builtin">error</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// QueryRange 查询数据</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">QueryRange</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ctx context</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">Context</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> expr </span><span class="token builtin">string</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> start</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> end </span><span class="token builtin">int64</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> step </span><span class="token builtin">uint32</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">[</span><span class="token punctuation" style="color:#393A34">]</span><span class="token operator" style="color:#393A34">*</span><span class="token plain">QueryResponse</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token builtin">error</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// Metadata 查询元数据</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">Metadata</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ctx context</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">Context</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token operator" style="color:#393A34">*</span><span class="token plain">Metadata</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token builtin">error</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// GetBasicInfo 获取数据源信息</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">GetBasicInfo</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain">BasicInfo</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="使用场景-1">使用场景<a href="#使用场景-1" class="hash-link" aria-label="使用场景的直接链接" title="使用场景的直接链接">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="创建">创建<a href="#创建" class="hash-link" aria-label="创建的直接链接" title="创建的直接链接">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="数据源创建" src="/assets/images/datasource-metric-create-75c965a2bfae5ffede46287d3ddb4c4e.png" width="1955" height="965" class="img_ev3q"></p>
 <ol>
 <li>
 <p><strong>系统监控</strong></p>
@@ -309,7 +310,7 @@
 <ul>
 <li>服务响应时间</li>
 <li>请求成功率</li>
-<li>业务指标统 计</li>
+<li>业务指标统计</li>
 <li>接口调用量</li>
 </ul>
 </li>
@@ -319,279 +320,59 @@
 <li>用户行为分析</li>
 <li>业务流程监控</li>
 <li>关键指标追踪</li>
-<li>SLA 监控</li>
+<li>SLA 监控
+<img decoding="async" loading="lazy" alt="数据源基本信息" src="/assets/images/datasource-metric-basic-c75ac357b0285d4f232c63b48e48b568.png" width="1955" height="968" class="img_ev3q"></li>
 </ul>
 </li>
 </ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="最佳实践-2">最佳实践<a href="#最佳实践-2" class="hash-link" aria-label="最佳实践的直接链接" title="最佳实践的直接链接">​</a></h3>
-<ol>
-<li>
-<p><strong>数据采集</strong></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="元数据">元数据<a href="#元数据" class="hash-link" aria-label="元数据的直接链接" title="元数据的直接链接">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="数据源元数据" src="/assets/images/datasource-metric-metadata-130c5499aba5ee7867be338ecb1076d3.png" width="1955" height="969" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="查询">查询<a href="#查询" class="hash-link" aria-label="查询的直接链接" title="查询的直接链接">​</a></h3>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>提示</div><div class="admonitionContent_BuS1"><p>查询结果支持图表、表格、JSON三种形式。 PromQL 语法参考 <a href="https://prometheus.io/docs/prometheus/latest/querying/basics/" target="_blank" rel="noopener noreferrer">Prometheus</a>。</p><p>输入框支持表达式、函数、变量、常量等语法提示，能帮助用户快速构建查询语句。</p></div></div>
 <ul>
-<li>合理设置采集间隔</li>
-<li>优化标签设计</li>
-<li>控制指标基数</li>
-<li>规范命名规则</li>
+<li>图表</li>
 </ul>
-</li>
-<li>
-<p><strong>查询优化</strong></p>
+<p><img decoding="async" loading="lazy" alt="数据源查询" src="/assets/images/datasource-metric-real-query-46a4bc1715da80fc3abd24b60e9af867.png" width="1955" height="967" class="img_ev3q"></p>
+<blockquote>
+<p>查询条件说明, 可以选择时间范围、数据稀疏程度， 图表样式</p>
+</blockquote>
+<p><img decoding="async" loading="lazy" alt="查询条件说明" src="/assets/images/datasource-metric-real-query-params-804e5e04bb52eb9670406a76f51b8849.png" width="1483" height="714" class="img_ev3q"></p>
 <ul>
-<li>使用高效的查询语句</li>
-<li>避免过度聚合</li>
-<li>合理使用函数</li>
-<li>控制查询时间范围</li>
+<li>表格</li>
 </ul>
-</li>
-<li>
-<p><strong>存储优化</strong></p>
+<p><img decoding="async" loading="lazy" alt="数据源查询" src="/assets/images/datasource-metric-real-table-e5d9391c5875b3a9aa77eb38c1cd12b0.png" width="1955" height="970" class="img_ev3q"></p>
 <ul>
-<li>合理设置数据保留时间</li>
-<li>配置数据下采样</li>
-<li>启用数据压缩</li>
-<li>规划存储容量</li>
+<li>JSON</li>
 </ul>
-</li>
-</ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="查询示例">查询示例<a href="#查询示例" class="hash-link" aria-label="查询示例的直接链接" title="查询示例的直接链接">​</a></h3>
-<ol>
-<li><strong>基础查询</strong></li>
-</ol>
-<div class="language-promql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-promql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain"># CPU 使用率</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">rate(node_cpu_seconds_total{mode=&quot;user&quot;}[5m])</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># 内存使用量</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># HTTP请求量</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">rate(http_requests_total{status=~&quot;2xx&quot;}[1m])</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<ol start="2">
-<li><strong>聚合查询</strong></li>
-</ol>
-<div class="language-promql codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-promql codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain"># 按实例统计CPU使用率TOP5</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">topk(5, avg by(instance) (rate(node_cpu_seconds_total{mode!=&quot;idle&quot;}[5m])))</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"># 计算服务可 用性</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">sum(rate(http_requests_total{code=~&quot;2xx|3xx&quot;}[5m])) / sum(rate(http_requests_total[5m]))</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p><img decoding="async" loading="lazy" alt="数据源查询" src="/assets/images/datasource-metric-real-json-baf2aaf19d06e815e21ea40eeae3157e.png" width="1955" height="970" class="img_ev3q"></p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="事件event">事件（Event）<a href="#事件event" class="hash-link" aria-label="事件（Event）的直接链接" title="事件（Event）的直接链接">​</a></h2>
-<p>事件数据源提供统一的消息队列接入和处理接口，支持主流的消息中间件，实现事件数据的实时采集、处理和分析。</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="支持的消息中间件">支持的消息中间件<a href="#支持的消息中间件" class="hash-link" aria-label="支持的消息中间件的直接链接" title="支持的消息中间件的直接链接">​</a></h3>
-<ol>
-<li>
-<p><strong>Kafka</strong></p>
-<ul>
-<li>高吞吐量分布式消息系统</li>
-<li>持久化的消息存储</li>
-<li>高可用的集群架构</li>
-<li>丰富的生态系统集成</li>
-<li>适用于大规模实时数据处理</li>
-</ul>
-</li>
-<li>
-<p><strong>RocketMQ</strong></p>
-<ul>
-<li>低延迟的消息投递</li>
-<li>金融级的可靠性保证</li>
-<li>灵活的消息模型</li>
-<li>丰富的消息类型</li>
-<li>适用于业务关键场景</li>
-</ul>
-</li>
-<li>
-<p><strong>MQTT</strong></p>
-<ul>
-<li>轻量级的发布/订阅协议</li>
-<li>适用于物联网场景</li>
-<li>支持多种QoS级别</li>
-<li>低带宽占用</li>
-<li>适用于边缘设备通信</li>
-</ul>
-</li>
-</ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="核心功能-3">核心功能<a href="#核心功能-3" class="hash-link" aria-label="核心功能的直接链接" title="核心功能的直接链接">​</a></h3>
-<ol>
-<li>
-<p><strong>消息接入</strong></p>
-<ul>
-<li>多协议支持</li>
-<li>实时消息订阅</li>
-<li>消息过滤</li>
-<li>消息路由</li>
-</ul>
-</li>
-<li>
-<p><strong>事件处理</strong></p>
-<ul>
-<li>实时事件分析</li>
-<li>事件聚合统计</li>
-<li>事件关联分析</li>
-<li>事件持久化</li>
-</ul>
-</li>
-<li>
-<p><strong>告警集成</strong></p>
-<ul>
-<li>事件触发告警</li>
-<li>告警规则配置</li>
-<li>告警级别定义</li>
-<li>告警通知集成</li>
-</ul>
-</li>
-</ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="接口定义-2">接口定义<a href="#接口定义-2" class="hash-link" aria-label="接口定义的直接链接" title="接口定义的直接链接">​</a></h3>
+<p>实现统一的事件查询接口，以支持多种事件存储器。 在平台配置统一的事件策略完成事件类型数据的查询、分析、告警、可视化等。</p>
+<p><a href="https://kafka.apache.org/" target="_blank" rel="noopener noreferrer">Kafka</a>、<a href="https://rocketmq.apache.org/" target="_blank" rel="noopener noreferrer">RocketMQ</a>、<a href="https://mqtt.org/" target="_blank" rel="noopener noreferrer">MQTT</a></p>
 <div class="language-go codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-go codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic">// IMQ mq接口</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">type</span><span class="token plain"> IMQ </span><span class="token keyword" style="color:#00009f">interface</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// Send 发送消息</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">Send</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">topic </span><span class="token builtin">string</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> data </span><span class="token punctuation" style="color:#393A34">[</span><span class="token punctuation" style="color:#393A34">]</span><span class="token builtin">byte</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token builtin">error</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// Receive 接收消息 返回一个接收通道</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">Receive</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">topic </span><span class="token builtin">string</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;-</span><span class="token keyword" style="color:#00009f">chan</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">*</span><span class="token plain">Msg</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// RemoveReceiver 移除某个topic的接收通道</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">RemoveReceiver</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">topic </span><span class="token builtin">string</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// Close 关闭连接</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">Close</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="使用场景-2">使用场景<a href="#使用场景-2" class="hash-link" aria-label="使用场景的直接链接" title="使用场景的直接链接">​</a></h3>
-<ol>
-<li>
-<p><strong>系统事件监控</strong></p>
-<ul>
-<li>系统状态变更</li>
-<li>资源告警事件</li>
-<li>安全事件通知</li>
-<li>运维操作审计</li>
-</ul>
-</li>
-<li>
-<p><strong>业务事件处理</strong></p>
-<ul>
-<li>订单状态追踪</li>
-<li>用户行为分析</li>
-<li>业务异常检测</li>
-<li>实时数据同步</li>
-</ul>
-</li>
-<li>
-<p><strong>IoT设备监控</strong></p>
-<ul>
-<li>设备状态监控</li>
-<li>传感器数据采集</li>
-<li>设备告警通知</li>
-<li>远程控制指令</li>
-</ul>
-</li>
-</ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="最佳实践-3">最佳实践<a href="#最佳实践-3" class="hash-link" aria-label="最佳实践的直接链接" title="最佳实践的直接链接">​</a></h3>
-<ol>
-<li>
-<p><strong>消息设计</strong></p>
-<ul>
-<li>合理设计Topic</li>
-<li>规范消息格式</li>
-<li>控制消息大小</li>
-<li>设置消息过期时间</li>
-</ul>
-</li>
-<li>
-<p><strong>性能优化</strong></p>
-<ul>
-<li>合理设置分区数</li>
-<li>优化消费者组</li>
-<li>配置适当的批处理</li>
-<li>监控消息积压</li>
-</ul>
-</li>
-<li>
-<p><strong>可靠性保证</strong></p>
-<ul>
-<li>配置消息持久化</li>
-<li>设置副本因子</li>
-<li>实现消息重试</li>
-<li>处理消息幂等</li>
-</ul>
-</li>
-</ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="配置示例">配置示例<a href="#配置示例" class="hash-link" aria-label="配置示例的直接链接" title="配置示例的直接链接">​</a></h3>
-<ol>
-<li><strong>Kafka配置</strong></li>
-</ol>
-<div class="language-yaml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-yaml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token key atrule" style="color:#00a4db">type</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> event</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">provider</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> kafka</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">config</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">brokers</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">-</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;kafka-1:9092&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">-</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;kafka-2:9092&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">topics</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">-</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;alert.events&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">-</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;system.metrics&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">consumer_group</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;monitor-group&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">security</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token key atrule" style="color:#00a4db">sasl_enabled</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token boolean important" style="color:#36acaa">true</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token key atrule" style="color:#00a4db">mechanism</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;PLAIN&quot;</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<ol start="2">
-<li><strong>RocketMQ配置</strong></li>
-</ol>
-<div class="language-yaml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-yaml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token key atrule" style="color:#00a4db">type</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> event</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">provider</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> rocketmq</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">config</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">name_server</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;rocketmq-server:9876&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">group</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;monitor-group&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">topics</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">-</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;alert.events&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">retry_times</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">3</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<ol start="3">
-<li><strong>MQTT配置</strong></li>
-</ol>
-<div class="language-yaml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-yaml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token key atrule" style="color:#00a4db">type</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> event</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">provider</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> mqtt</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">config</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">broker</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;tcp://mqtt-broker:1883&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">client_id</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;monitor-client&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">topics</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">-</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;device/+/status&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">-</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;sensor/+/data&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">qos</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="创建-1">创建<a href="#创建-1" class="hash-link" aria-label="创建的直接链接" title="创建的直接链接">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="数据源创建" src="/assets/images/datasource-event-create-4086a5f6310b6c0c96460cf37c7c4d0d.png" width="1955" height="966" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="数据源创建" src="/assets/images/datasource-event-create-1-006ee54bea21128a05af3270547b9f2f.png" width="1955" height="968" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="数据源创建" src="/assets/images/datasource-event-create-2-0cbbc79d6e77dddcced174fef4d755e2.png" width="1955" height="967" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="基本信息">基本信息<a href="#基本信息" class="hash-link" aria-label="基本信息的直接链接" title="基本信息的直接链接">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="数据源基本信息" src="/assets/images/datasource-event-basic-b19cafd2c2594c6a73edd9f61157946c.png" width="1955" height="970" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="主题">主题<a href="#主题" class="hash-link" aria-label="主题的直接链接" title="主题的直接链接">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="数据源主题" src="/assets/images/datasource-event-topic-1f1d0b89c7af0a19edb9b1b1848398a3.png" width="1955" height="970" class="img_ev3q"></p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="日志log">日志（Log）<a href="#日志log" class="hash-link" aria-label="日志（Log）的直接链接" title="日志（Log）的直接链接">​</a></h2>
-<p>日志数据源提供统一的日志查询和分析接口，支持多种主流日志存储系统，实现日志数据的集中管理、实时检索和告警分析。</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="核心功能-4">核心功能<a href="#核心功能-4" class="hash-link" aria-label="核心功能的直接链接" title="核心功能的直接链接">​</a></h3>
-<ol>
-<li>
-<p><strong>日志采集与存储</strong></p>
+<p>实现统一的日志查询接口，以支持多种日志存储器。 在平台配置统一的日志策略完成日志类型数据的查询、分析、告警、可视化等。</p>
+<div class="language-go codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-go codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">	</span><span class="token comment" style="color:#999988;font-style:italic">// LogDatasource is the interface of log datasource.</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">	LogDatasource </span><span class="token keyword" style="color:#00009f">interface</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">		</span><span class="token comment" style="color:#999988;font-style:italic">// QueryLogs queries logs from datasource.</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">		</span><span class="token function" style="color:#d73a49">QueryLogs</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ctx context</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">Context</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> expr </span><span class="token builtin">string</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> start</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> end </span><span class="token builtin">int64</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token operator" style="color:#393A34">*</span><span class="token plain">LogResponse</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token builtin">error</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">		</span><span class="token comment" style="color:#999988;font-style:italic">// Check checks</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">		</span><span class="token function" style="color:#d73a49">Check</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ctx context</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">Context</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token builtin">error</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">	</span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <ul>
-<li>多源日志接入</li>
-<li>结构化解析</li>
-<li>实时数据处理</li>
-<li>高效压缩存储</li>
+<li><a href="https://www.elastic.co/cn/products/elasticsearch" target="_blank" rel="noopener noreferrer">Elasticsearch</a>：完整支持 ELK 技术栈，兼容 Kibana 可视化</li>
+<li><a href="https://grafana.com/oss/loki/" target="_blank" rel="noopener noreferrer">Loki</a>：优化日志索引存储，显著降低运维成本</li>
+<li><a href="https://www.aliyun.com/product/sls" target="_blank" rel="noopener noreferrer">aliyunSLS</a>：深度集成阿里云生态，支持一键接入云上服务
+三大主流日志存储方案，满足企业级用户在不同场景下的日志管理需求。</li>
 </ul>
-</li>
-<li>
-<p><strong>查询与分析</strong></p>
-<ul>
-<li>全文检索</li>
-<li>SQL分析能力</li>
-<li>可视化图表</li>
-<li>多维度统计</li>
-</ul>
-</li>
-<li>
-<p><strong>告警管理</strong></p>
-<ul>
-<li>实时告警触发</li>
-<li>复合告警条件</li>
-<li>告警降噪</li>
-<li>告警通知集成</li>
-</ul>
-</li>
-</ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="接口定义-3">接口定义<a href="#接口定义-3" class="hash-link" aria-label="接口定义的直接链接" title="接口定义的直接链接">​</a></h3>
-<div class="language-go codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-go codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic">// LogDatasource is the interface of log datasource.</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">LogDatasource </span><span class="token keyword" style="color:#00009f">interface</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// QueryLogs queries logs from datasource.</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">QueryLogs</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ctx context</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">Context</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> expr </span><span class="token builtin">string</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> start</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> end </span><span class="token builtin">int64</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token operator" style="color:#393A34">*</span><span class="token plain">LogResponse</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token builtin">error</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// Check checks connection status</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">Check</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ctx context</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">Context</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token builtin">error</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="使用场景-3">使用场景<a href="#使用场景-3" class="hash-link" aria-label="使用场景的直接链接" title="使用场景的直接链接">​</a></h3>
-<ol>
-<li>
-<p><strong>应用日志监控</strong></p>
-<ul>
-<li>错误日志实时告警</li>
-<li>性能问题诊断</li>
-<li>用户行为分析</li>
-</ul>
-</li>
-<li>
-<p><strong>安全日志分析</strong></p>
-<ul>
-<li>异常访问检测</li>
-<li>安全事件追踪</li>
-<li>合规审计日志</li>
-</ul>
-</li>
-<li>
-<p><strong>运维日志管理</strong></p>
-<ul>
-<li>系统日志集中化</li>
-<li>运维操作审计</li>
-<li>故障快速定位</li>
-</ul>
-</li>
-</ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="最佳实践-4">最佳实践<a href="#最佳实践-4" class="hash-link" aria-label="最佳实践的直接链接" title="最佳实践的直接链接">​</a></h3>
-<ol>
-<li>
-<p><strong>日志接入规范</strong></p>
-<ul>
-<li>统一日志格式</li>
-<li>规范日志级别</li>
-<li>合理的日志轮转策略</li>
-</ul>
-</li>
-<li>
-<p><strong>查询优化建议</strong></p>
-<ul>
-<li>使用精确的时间范围</li>
-<li>合理设置查询条件</li>
-<li>避免全文模糊匹配</li>
-</ul>
-</li>
-<li>
-<p><strong>成本优化</strong></p>
-<ul>
-<li>设置合理的保留期限</li>
-<li>启用日志压缩</li>
-<li>使用索引优化查询</li>
-</ul>
-</li>
-</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="创建-2">创建<a href="#创建-2" class="hash-link" aria-label="创建的直接链接" title="创建的直接链接">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="数据源创建" src="/assets/images/datasource-logs-create-7d300ca7af9ef52b569193b21e4ee7a8.png" width="2559" height="1348" class="img_ev3q">
+<img decoding="async" loading="lazy" alt="创建数据源-日志-选择存储器" src="/assets/images/datasource-logs-es-61d2cf4f00d5d5db57ed84d95cd1c025.png" width="2559" height="1348" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="基本信息-1">基本信息<a href="#基本信息-1" class="hash-link" aria-label="基本信息的直接链接" title="基本信息的直接链接">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="数据源基本信息" src="/assets/images/datasource-logs-basic-53d9264f5e706b1093e127e34fda1dc1.png" width="2559" height="1348" class="img_ev3q"></p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="链路trace--开发中">链路（Trace）- 开发中<a href="#链路trace--开发中" class="hash-link" aria-label="链路（Trace）- 开发中的直接链接" title="链路（Trace）- 开发中的直接链接">​</a></h2>
-<p>链路数据源提供统一的分布式追踪数据接入和分析接口，支持主流的链路追踪系 统，实现全链路监控、性能分析和故障诊断。</p>
+<p>链路数据源提供统一的分布式追踪数据接入和分析接口，支持主流的链路追踪系统，实现全链路监控、性能分析和故障诊断。</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="计划支持的追踪系统">计划支持的追踪系统<a href="#计划支持的追踪系统" class="hash-link" aria-label="计划支持的追踪系统的直接链接" title="计划支持的追踪系统的直接链接">​</a></h3>
 <ol>
 <li>
@@ -648,39 +429,9 @@
 </ul>
 </li>
 </ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="接口规划">接口规划<a href="#接口规划" class="hash-link" aria-label="接口规划的直接链接" title="接口规划的直接链接">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="接口规划">  接口规划<a href="#接口规划" class="hash-link" aria-label="接口规划的直接链接" title="接口规划的直接链接">​</a></h3>
 <div class="language-go codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-go codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic">// TraceDatasource 链路数据源接口</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">type</span><span class="token plain"> TraceDatasource </span><span class="token keyword" style="color:#00009f">interface</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// QueryTrace 查询链路数据</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">QueryTrace</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ctx context</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">Context</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> traceID </span><span class="token builtin">string</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token operator" style="color:#393A34">*</span><span class="token plain">TraceData</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token builtin">error</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// QueryTraces 批量查询链路</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">QueryTraces</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ctx context</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">Context</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> filter </span><span class="token operator" style="color:#393A34">*</span><span class="token plain">TraceFilter</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">[</span><span class="token punctuation" style="color:#393A34">]</span><span class="token operator" style="color:#393A34">*</span><span class="token plain">TraceData</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token builtin">error</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// GetServiceGraph 获取服务调用关系图</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">GetServiceGraph</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ctx context</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">Context</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> start</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> end </span><span class="token builtin">int64</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token operator" style="color:#393A34">*</span><span class="token plain">ServiceGraph</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token builtin">error</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// GetServiceMetrics 获取服务指标</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">GetServiceMetrics</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ctx context</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">Context</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> service </span><span class="token builtin">string</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> start</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> end </span><span class="token builtin">int64</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token operator" style="color:#393A34">*</span><span class="token plain">ServiceMetrics</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token builtin">error</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="复制代码到剪贴板" title="复制" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="应用场景">应用场景<a href="#应用场景" class="hash-link" aria-label="应用场景的直接链接" title="应用场景的直接链接">​</a></h3>
-<ol>
-<li>
-<p><strong>微服务监控</strong></p>
-<ul>
-<li>服务调用链路追踪</li>
-<li>接口性能分析</li>
-<li>服务依赖梳理</li>
-<li>故障快速定位</li>
-</ul>
-</li>
-<li>
-<p><strong>性能优化</strong></p>
-<ul>
-<li>调用链路优化</li>
-<li>性能瓶颈识别</li>
-<li>资源使用分析</li>
-<li>慢调用诊断</li>
-</ul>
-</li>
-<li>
-<p><strong>问题诊断</strong></p>
-<ul>
-<li>异常链路回溯</li>
-<li>错误传播分析</li>
-<li>系统瓶颈定位</li>
-<li>级联故障分析</li>
-</ul>
-</li>
-</ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="开发计划">开发计划<a href="#开发计划" class="hash-link" aria-label="开发计划的直接链接" title="开发计划的直  接链接">​</a></h3>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="开发计划">开发计划<a href="#开发计划" class="hash-link" aria-label="开发计划的直接链接" title="开发计划的直接链接">​</a></h3>
 <ol>
 <li>
 <p><strong>第一阶段</strong></p>
@@ -696,7 +447,7 @@
 <ul>
 <li>Jaeger集成支持</li>
 <li>高级查询分析功能</li>
-<li>服务依赖分析</li>
+<li>服务依赖  分析</li>
 <li>链路告警支持</li>
 </ul>
 </li>
@@ -709,36 +460,6 @@
 <li>全链路监控大盘</li>
 </ul>
 </li>
-</ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="技术特性">技术特性<a href="#技术特性" class="hash-link" aria-label="技术特性的直接链接" title="技术特性的直接链接">​</a></h3>
-<ol>
-<li>
-<p><strong>数据模型</strong></p>
-<ul>
-<li>分布式追踪模型</li>
-<li>Span数据结构</li>
-<li>上下文关联</li>
-<li>标签化属性</li>
-</ul>
-</li>
-<li>
-<p><strong>采样策略</strong></p>
-<ul>
-<li>头部采样</li>
-<li>尾部采样</li>
-<li>自适应采样</li>
-<li>优先级采样</li>
-</ul>
-</li>
-<li>
-<p><strong>存储设计</strong></p>
-<ul>
-<li>高性能存储</li>
-<li>分布式架构</li>
-<li>数据压缩</li>
-<li>快速检索</li>
-</ul>
-</li>
-</ol></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/2-feature/1-datasource.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>编辑此页</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="文件选  项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/category/系统介绍"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">系统介绍</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/feature/notify-group"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">告警通知组</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#功能描述" class="table-of-contents__link toc-highlight">功能描述</a></li><li><a href="#核心功能" class="table-of-contents__link toc-highlight">核心功能</a><ul><li><a href="#1-指标数据源metric" class="table-of-contents__link toc-highlight">1. 指标数据源（Metric）</a></li><li><a href="#2-事件数据源event" class="table-of-contents__link toc-highlight">2. 事件数据源（Event）</a></li><li><a href="#3-日志数据源log" class="table-of-contents__link toc-highlight">3. 日志数据源（Log）</a></li><li><a href="#支持的存储系统" class="table-of-contents__link toc-highlight">支持的存储系统</a></li><li><a href="#核心功能-1" class="table-of-contents__link toc-highlight">核心功能</a></li><li><a href="#接口定义" class="table-of-contents__link toc-highlight">接口定义</a></li><li><a href="#使用场景" class="table-of-contents__link toc-highlight">使用场景</a></li><li><a href="#最佳实践" class="table-of-contents__link toc-highlight">最佳实践</a></li></ul></li><li><a href="#使用说明" class="table-of-contents__link toc-highlight">使用说明</a></li><li><a href="#注意事项" class="table-of-contents__link toc-highlight">注意事项</a></li><li><a href="#最佳实践-1" class="table-of-contents__link toc-highlight">最佳实践</a></li><li><a href="#指标metric" class="table-of-contents__link toc-highlight">指标（Metric）</a><ul><li><a href="#支持的存储系统-1" class="table-of-contents__link toc-highlight">支持的存储系统</a></li><li><a href="#核心功能-2" class="table-of-contents__link toc-highlight">核心功能</a></li><li><a href="#接口定义-1" class="table-of-contents__link toc-highlight">接口定义</a></li><li><a href="#使用场景-1" class="table-of-contents__link toc-highlight">使用场景</a></li><li><a href="#最佳实践-2" class="table-of-contents__link toc-highlight">最佳实践</a></li><li><a href="#查询示例" class="table-of-contents__link toc-highlight">查询示例</a></li></ul></li><li><a href="#事件event" class="table-of-contents__link toc-highlight">事件（Event）</a><ul><li><a href="#支持的消息中间件" class="table-of-contents__link toc-highlight">支持的消息中间件</a></li><li><a href="#核心功能-3" class="table-of-contents__link toc-highlight">核心功能</a></li><li><a href="#接口定义-2" class="table-of-contents__link toc-highlight">接口定义</a></li><li><a href="#使用场景-2" class="table-of-contents__link toc-highlight">使用场景</a></li><li><a href="#最佳实践-3" class="table-of-contents__link toc-highlight">最佳实践</a></li><li><a href="#配置示例" class="table-of-contents__link toc-highlight">配置示例</a></li></ul></li><li><a href="#日志log" class="table-of-contents__link toc-highlight">日志（Log）</a><ul><li><a href="#核心功能-4" class="table-of-contents__link toc-highlight">核心功能</a></li><li><a href="#接口定义-3" class="table-of-contents__link toc-highlight">接口定义</a></li><li><a href="#使用场景-3" class="table-of-contents__link toc-highlight">使用场景</a></li><li><a href="#最佳实践-4" class="table-of-contents__link toc-highlight">最佳实践</a></li></ul></li><li><a href="#链路trace--开发中" class="table-of-contents__link toc-highlight">链路（Trace）- 开发中</a><ul><li><a href="#计划支持的追踪系统" class="table-of-contents__link toc-highlight">计划支持的追踪系统</a></li><li><a href="#规划功能" class="table-of-contents__link toc-highlight">规划功能</a></li><li><a href="#接口规划" class="table-of-contents__link toc-highlight">接口规划</a></li><li><a href="#应用场景" class="table-of-contents__link toc-highlight">应用场景</a></li><li><a href="#开发计划" class="table-of-contents__link toc-highlight">开发计划</a></li><li><a href="#技术特性" class="table-of-contents__link toc-highlight">技术特性</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">使用文档</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/intro">快速开始</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"></ul></div><div class="col footer__col"><div class="footer__title">更多</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/blog">博客</a></li><li class="footer__item"><a href="https://github.com/aide-family/moon" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Aide-Family, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</ol></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/2-feature/1-datasource.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>编辑此页</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/category/系统介绍"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">系统介绍</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/feature/notify-group"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">告警通知组</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#功能描述" class="table-of-contents__link toc-highlight">功能描述</a></li><li><a href="#核心功能" class="table-of-contents__link toc-highlight">核心功能</a><ul><li><a href="#1-指标数据源metric" class="table-of-contents__link toc-highlight">1. 指标数据源（Metric）</a></li><li><a href="#2-事件数据源event" class="table-of-contents__link toc-highlight">2. 事件数据源（Event）</a></li><li><a href="#3- 日志数据源log" class="table-of-contents__link toc-highlight">3. 日志数据源（Log）</a></li><li><a href="#支持的存储系统" class="table-of-contents__link toc-highlight">支持的存储系统</a></li><li><a href="#核心功能-1" class="table-of-contents__link toc-highlight">核心功能</a></li><li><a href="#接口定义" class="table-of-contents__link toc-highlight">接口定义</a></li><li><a href="#使用场景" class="table-of-contents__link toc-highlight">使用场景</a></li><li><a href="#最佳实践" class="table-of-contents__link toc-highlight">最佳实践</a></li></ul></li><li><a href="#使用说明" class="table-of-contents__link toc-highlight">使用说明</a></li><li><a href="#注意事项" class="table-of-contents__link toc-highlight">注意事项</a></li><li><a href="#最佳实践-1" class="table-of-contents__link toc-highlight">最佳实践</a></li><li><a href="#指标metric" class="table-of-contents__link toc-highlight">指标（Metric）</a><ul><li><a href="#支持的存储系统-1" class="table-of-contents__link toc-highlight">支持的存储系统</a></li><li><a href="#核心功能-2" class="table-of-contents__link toc-highlight">核心功能</a></li><li><a href="#接口定义-1" class="table-of-contents__link toc-highlight">接口定义</a></li><li><a href="#创建" class="table-of-contents__link toc-highlight">创建</a></li><li><a href="#元数据" class="table-of-contents__link toc-highlight">元数据</a></li><li><a href="#查询" class="table-of-contents__link toc-highlight">查询</a></li></ul></li><li><a href="#事件event" class="table-of-contents__link toc-highlight">事件（Event）</a><ul><li><a href="#创建-1" class="table-of-contents__link toc-highlight">创建</a></li><li><a href="#基本信息" class="table-of-contents__link toc-highlight">基本信息</a></li><li><a href="#主题" class="table-of-contents__link toc-highlight">主题</a></li></ul></li><li><a href="#日志log" class="table-of-contents__link toc-highlight">日志（Log）</a><ul><li><a href="# 创建-2" class="table-of-contents__link toc-highlight">创建</a></li><li><a href="#基本信息-1" class="table-of-contents__link toc-highlight">基本信息</a></li></ul></li><li><a href="#链路trace--开发中" class="table-of-contents__link toc-highlight">链路（Trace）- 开发中</a><ul><li><a href="#计划支持的追踪系统" class="table-of-contents__link toc-highlight">计划支持的追踪系统</a></li><li><a href="#规划功能" class="table-of-contents__link toc-highlight">规划功能</a></li><li><a href="#接口规划" class="table-of-contents__link toc-highlight">接口规划</a></li><li><a href="#开发计划" class="table-of-contents__link toc-highlight">开发计划</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">使用文档</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/intro">快速开始</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"></ul></div><div class="col footer__col"><div class="footer__title">更多</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/blog">博客</a></li><li class="footer__item"><a href="https://github.com/aide-family/moon" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Aide-Family, Inc. Built with Docusaurus.</div></div></div></footer></div>
 </body>
 </html>
